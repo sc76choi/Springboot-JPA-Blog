@@ -13,4 +13,5 @@
 * OAuth2 Client
 * Spring Web
 * [Maven](https://mvnrepository.com/)
+* Jackson
 * 섬머노트 
