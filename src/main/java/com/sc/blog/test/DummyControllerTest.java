@@ -22,7 +22,7 @@ public class DummyControllerTest {
         System.out.println("password : " + user.getPassword());
         System.out.println("email : " + user.getEmail());
         
-        user.setRole(RoleType.USER);
+        user.setRole(RoleType.USER); 
         userRepository.save(user);
         
         return "succ";
