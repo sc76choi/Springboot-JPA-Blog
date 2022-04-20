@@ -1,14 +1,17 @@
 package com.sc.blog.test;
 
-import java.util.function.Supplier;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sc.blog.model.RoleType;
 import com.sc.blog.model.User;
 import com.sc.blog.repository.UserRepository;
@@ -18,6 +21,19 @@ public class DummyControllerTest {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @GetMapping("/dummy/users")
+    public List<User> list() {
+        return userRepository.findAll();
+    }
+    
+    // 페이지당 2건
+    @GetMapping("/dummy/user")
+    public List<User> pageList(@PageableDefault(size=2, sort="id", direction=Sort.Direction.DESC)Pageable pageable) {
+        Page<User> pagingUsers = userRepository.findAll(pageable);
+        List<User> users = pagingUsers.getContent();
+        return users;
+    }
     
     // http://localhost:8000/blog/dummy/user/3
     @GetMapping("/dummy/user/{id}")
