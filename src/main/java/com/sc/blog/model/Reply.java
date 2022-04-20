@@ -31,7 +31,7 @@ public class Reply {
     private String content;
     
     @ManyToOne // Many = Reply,  One = Reply
-    @JoinColumn(name="boardId")
+    @JoinColumn(name="boardId") 
     private Board board;
     
     @ManyToOne // Many = Reply,  One = User
