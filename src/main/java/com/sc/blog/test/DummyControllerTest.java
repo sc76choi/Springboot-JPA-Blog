@@ -2,6 +2,8 @@ package com.sc.blog.test;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +12,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sc.blog.model.RoleType;
@@ -21,6 +25,29 @@ public class DummyControllerTest {
     
     @Autowired
     private UserRepository userRepository;
+    
+    // save함수는 id를 전달하지 않으면 insert
+    // save함수는 id를 전달하면 update
+    
+    @Transactional
+    @PutMapping("/dummy/user/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User requestUser) { // json 데이터를 요청 -> Java Object로 변환해서 받아줌(MessageConverter Jackson 라이브러리)
+        System.out.println("id : " + id);
+        System.out.println("password : " + requestUser.getPassword());
+        System.out.println("email : " + requestUser.getEmail());
+        
+        User user = userRepository.findById(id).orElseThrow(() -> {
+            return new IllegalArgumentException("수정 실패하였습니다.");
+        });
+        
+        user.setPassword(requestUser.getPassword());
+        user.setEmail(requestUser.getEmail());
+        
+//        userRepository.save(user);
+        
+        // 더티 체킹 
+        return user;
+    }
     
     @GetMapping("/dummy/users")
     public List<User> list() {

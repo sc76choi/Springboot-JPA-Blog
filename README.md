@@ -1,5 +1,5 @@
-# Springboot-JPA-Blog
-[Springboot-JPA-Blog](https://getinthere.tistory.com/)
+# Springboot-JPA-Blog (https://getinthere.tistory.com/)
+[스프링부트 with JPA 블로그](https://getinthere.tistory.com/category/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8%20with%20JPA%20%EB%B8%94%EB%A1%9C%EA%B7%B8)
 
 > Tech Stack  
 * [Oracle JDK 1.8](https://adoptopenjdk.net/installation.html)
