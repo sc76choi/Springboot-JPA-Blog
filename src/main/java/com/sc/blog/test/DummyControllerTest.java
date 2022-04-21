@@ -1,14 +1,17 @@
 package com.sc.blog.test;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,16 +29,29 @@ public class DummyControllerTest {
     @Autowired
     private UserRepository userRepository;
     
+    @DeleteMapping("/dummy/user/{id}")
+    public String deleteUser(@PathVariable int id) {
+        try {
+            
+            System.out.println("id : " + id);
+            userRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            // TODO: handle exception
+            return "삭제실패, id 없음 : " + id;
+        }
+        return "삭제완료 id : " + id;
+    }
+    
     // save함수는 id를 전달하지 않으면 insert
     // save함수는 id를 전달하면 update
-    
-    @Transactional
+    @Transactional // 함수종료시 자동 업데이트
     @PutMapping("/dummy/user/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User requestUser) { // json 데이터를 요청 -> Java Object로 변환해서 받아줌(MessageConverter Jackson 라이브러리)
         System.out.println("id : " + id);
         System.out.println("password : " + requestUser.getPassword());
         System.out.println("email : " + requestUser.getEmail());
-        
+
+        // 영속화
         User user = userRepository.findById(id).orElseThrow(() -> {
             return new IllegalArgumentException("수정 실패하였습니다.");
         });
