@@ -18,3 +18,5 @@
 * tiles-core-3.0.8.jar
 * jstl-1.2.jar
 * 섬머노트 
+
+> http://localhost:8000/blog/
