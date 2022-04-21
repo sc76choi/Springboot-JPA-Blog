@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="layout/header.jsp"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<!-- ------------------- <header> --------------------------------------- -->
+<tiles:insertAttribute name="header" />
 <div class="container">
     <div class="card m-2">
         <!--  <img class="card-img-top" src="img_avatar1.png" alt="Card image"> -->
@@ -26,4 +28,5 @@
         </div>
     </div>
 </div>
-<%@ include file="layout/footer.jsp"%>
+<!-- ------------------- <footer> --------------------------------------- -->
+<tiles:insertAttribute name="footer" />
