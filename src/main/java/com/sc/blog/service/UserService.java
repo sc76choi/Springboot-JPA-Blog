@@ -21,10 +21,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    // 로그인
-    // select 할 때 트랜젝션 시작, 서비스 종료시에 트랜젝션 종료 (정합성)
-    @Transactional(readOnly = true)
-    public User login(User user) {
-        return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
-    }
+//    // 로그인
+//    // select 할 때 트랜젝션 시작, 서비스 종료시에 트랜젝션 종료 (정합성)
+//    @Transactional(readOnly = true)
+//    public User login(User user) {
+//        return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+//    }
 }

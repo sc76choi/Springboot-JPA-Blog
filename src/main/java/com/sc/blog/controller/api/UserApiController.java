@@ -18,10 +18,11 @@ public class UserApiController {
     
     @Autowired
     private UserService userService;
-    @Autowired
-    private HttpSession session;
+//    @Autowired
+//    private HttpSession session;
     
-    @PostMapping("/api/user")
+//    @PostMapping("/api/user")
+    @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
         System.out.println("called UserApiController! - save");
         
@@ -33,16 +34,16 @@ public class UserApiController {
     }
     
     // 전통적인 로그인 방식 
-    @PostMapping("/api/user/login")
-    public ResponseDto<Integer> login(@RequestBody User user) {
-        System.out.println("called UserApiController! - login");
-        
-        User principal = userService.login(user);
-        
-        System.out.println("principal : " + principal);
-        if(principal  != null) {
-            session.setAttribute("principal", principal); // 세션을 만듦
-        }
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-    }
+//    @PostMapping("/api/user/login")
+//    public ResponseDto<Integer> login(@RequestBody User user) {
+//        System.out.println("called UserApiController! - login");
+//        
+//        User principal = userService.login(user);
+//        
+//        System.out.println("principal : " + principal);
+//        if(principal  != null) {
+//            session.setAttribute("principal", principal); // 세션을 만듦
+//        }
+//        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+//    }
 }

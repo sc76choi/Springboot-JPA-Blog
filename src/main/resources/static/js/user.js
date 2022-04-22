@@ -27,7 +27,7 @@ let index = {
         $.ajax({
             // 회원가입 수행
             type: "POST",
-            url: "/blog/api/user",
+            url: "/api/user",
             data: JSON.stringify(data), // http body
             contentType:"application/json; charset=utf-8", // body가 어떤 타입인지
             dataType: "json" // 응답 결과의 타입(기본적으로 문자열인데 생긴게 json이라면) => javascript 
@@ -35,7 +35,7 @@ let index = {
             // 정상
             alert("회원가입이 완료되었습니다.")
             console.log(response)
-            location.href = "/blog"
+            location.href = "/"
         }).fail(function(error) {
             // 실패
             alert(JSON.stringify(error))
@@ -56,7 +56,7 @@ let index = {
         $.ajax({
             // 회원가입 수행
             type: "POST",
-            url: "/blog/api/user/login",
+            url: "/api/user/login",
             data: JSON.stringify(data), // http body
             contentType:"application/json; charset=utf-8", // body가 어떤 타입인지
             dataType: "json" // 응답 결과의 타입(기본적으로 문자열인데 생긴게 json이라면) => javascript 
@@ -64,7 +64,7 @@ let index = {
             // 정상
             alert("로그인이 완료되었습니다.")
             console.log(response)
-            location.href = "/blog"
+            location.href = "/"
         }).fail(function(error) {
             // 실패
             alert(JSON.stringify(error))
