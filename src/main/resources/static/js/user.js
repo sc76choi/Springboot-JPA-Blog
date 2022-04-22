@@ -7,9 +7,9 @@ let index = {
         $("#btn-save").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
             this.save()
         });
-        $("#btn-login").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
+        /*$("#btn-login").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
             this.login()
-        });
+        });*/
     },
     save: function() {
         let data = {
@@ -27,7 +27,7 @@ let index = {
         $.ajax({
             // 회원가입 수행
             type: "POST",
-            url: "/api/user",
+            url: "/auth/joinProc", //"/api/user",
             data: JSON.stringify(data), // http body
             contentType:"application/json; charset=utf-8", // body가 어떤 타입인지
             dataType: "json" // 응답 결과의 타입(기본적으로 문자열인데 생긴게 json이라면) => javascript 
@@ -41,7 +41,7 @@ let index = {
             alert(JSON.stringify(error))
         });
     },
-    login: function() {
+    /*login: function() {
         let data = {
             userName: $("#userName").val(),
             password: $("#password").val(),
@@ -69,7 +69,7 @@ let index = {
             // 실패
             alert(JSON.stringify(error))
         });
-    }
+    }*/
 }
 
 index.init()
