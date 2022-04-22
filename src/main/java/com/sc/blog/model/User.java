@@ -32,7 +32,7 @@ public class User {
     private int id; // 시쿼스 auto_increment
     
     @Column(nullable = false, length = 30, unique = true)
-    private String userName;
+    private String username;
     
     @Column(nullable = false, length = 100) // 해쉬로 변경 암호화
     private String password;

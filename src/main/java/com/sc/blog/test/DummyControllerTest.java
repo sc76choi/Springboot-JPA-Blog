@@ -114,7 +114,7 @@ public class DummyControllerTest {
     // body에 요청
     @PostMapping("/dummy/join")
     public String join(User user) { // key = value 약속된 규칙
-        System.out.println("username : " + user.getUserName());
+        System.out.println("username : " + user.getUsername());
         System.out.println("password : " + user.getPassword());
         System.out.println("email : " + user.getEmail());
         
