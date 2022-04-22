@@ -38,7 +38,6 @@ public class Board {
     @Lob
     private String content; // 대용량 데이터 섬머노트 라이브러리, html 코드가 섞임
     
-    @ColumnDefault("0") 
     private int count; // 조회수
     
     @ManyToOne(fetch = FetchType.EAGER) // Many = Board,  One = User
