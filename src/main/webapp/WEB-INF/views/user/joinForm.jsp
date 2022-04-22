@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- <%@ include file="../layout/header.jsp"%> --%>
+<%@ include file="../layout/header.jsp"%>
 <!-- ------------------- <header> --------------------------------------- -->
-<tiles:insertAttribute name="header" />
+<!-- <tiles:insertAttribute name="header" /> -->
 <div class="container">
     <form>
         <div class="form-group">
@@ -21,7 +21,7 @@
     <button id="btn-save" class="btn btn-primary">회원가입완료</button>
 </div>
 
-<script src="/js/user.js"></script>
-<%-- <%@ include file="../layout/footer.jsp"%> --%>
+<script type="application/javascript" src="/js/user.js"></script>
+<%@ include file="../layout/footer.jsp"%>
 <!-- ------------------- <footer> --------------------------------------- -->
-<tiles:insertAttribute name="footer" />
+<!-- <tiles:insertAttribute name="footer" /> -->

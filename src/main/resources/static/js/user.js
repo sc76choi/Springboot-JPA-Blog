@@ -17,9 +17,8 @@ let index = {
             password: $("#password").val(),
             email: $("#email").val(),
         }
-        //alert("call save")
+        alert("call save")
         console.log(data)
-        //alert(data)
         
         // ajax 통신을 이용해서 3개의 파라미터를 json으로 변경하여 insert 요청
         // ajax 호출시 default가 비동기 호출
@@ -38,7 +37,7 @@ let index = {
             location.href = "/"
         }).fail(function(error) {
             // 실패
-            alert(JSON.stringify(error))
+            alert("fail : \n" + JSON.stringify(error))
         });
     },
     /*login: function() {
