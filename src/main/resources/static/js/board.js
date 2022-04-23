@@ -7,6 +7,15 @@ let index = {
         $("#btn-board-save").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
             this.save()
         });
+        $("#btn-delete").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
+            this.save()
+        });
+        $("#btn-upadte").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
+            this.save()
+        });
+        $("#btn-board-list").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
+            location.href = "/"
+        });
     },
     save: function() {
         let data = {
