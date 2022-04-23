@@ -29,6 +29,7 @@ public class BoardService {
         return boardRepository.findAll(pageable);
     }
     
+    // 글 상세보기
     public Board detail(int id) {
         return boardRepository.findById(id)
                 .orElseThrow(()->{
