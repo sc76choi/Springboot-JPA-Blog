@@ -13,7 +13,7 @@ let index = {
             title: $("#title").val(),
             content: $("#content").val()
         }
-        alert("call save")
+        // alert("call save")
         console.log(data)
         $.ajax({
             type: "POST",
