@@ -49,11 +49,11 @@ public class UserService {
                     });
         String rawPassword = user.getPassword();
         String encPassword = encoder.encode(rawPassword);
-        persistance.setUsername(user.getUsername());
+        //persistance.setUsername(user.getUsername());
         persistance.setPassword(encPassword);
         persistance.setEmail(user.getEmail());
         
-        userRepository.save(persistance);
+        //userRepository.save(persistance);
         // 회원수정 함수 종료시 = 서비스 종료 = 트랜젝션이 종료 = commit이 자동
         // 영속화된 persistance 객체의 변화가 감지되면 터티체킹이 되어 update문을 날려줌.
     }
