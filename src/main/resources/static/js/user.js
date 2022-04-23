@@ -13,11 +13,11 @@ let index = {
     },
     save: function() {
         let data = {
-            userName: $("#username").val(),
+            username: $("#username").val(),
             password: $("#password").val(),
             email: $("#email").val(),
         }
-        alert("call save")
+        //alert("call save")
         console.log(data)
         
         // ajax 통신을 이용해서 3개의 파라미터를 json으로 변경하여 insert 요청

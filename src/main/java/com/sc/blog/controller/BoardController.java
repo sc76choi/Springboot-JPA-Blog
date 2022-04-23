@@ -19,6 +19,12 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
     
+    @GetMapping("/board/{id}/updateForm")
+    public String updateForm(@PathVariable int id, Model model) {
+        model.addAttribute("board", boardService.detail(id));
+        return "board/updateForm";
+    }
+    
     @GetMapping("/board/{id}")
     public String findByID(@PathVariable int id, Model model) {
         model.addAttribute("board", boardService.detail(id));

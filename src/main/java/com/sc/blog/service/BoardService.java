@@ -35,4 +35,21 @@ public class BoardService {
                     return new IllegalArgumentException("글 상세보기 실패! id : " + id);
                 });
     }
+    
+    public void deleteById(int id) {
+        boardRepository.deleteById(id);
+    }
+    
+    // 글수정하기
+    @Transactional
+    public void updateById(int id, Board requestBoard) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("글 찾기 실패! id : " + id);
+                });
+        board.setTitle(requestBoard.getTitle());
+        board.setContent(requestBoard.getContent());
+        
+        // 해당함수 종료시에, 트랜젝션이 Service가 종료될때, 트랜젝션이 종료됨. 이때 더티 체킹 발생 자동 업데이트 db flush
+    }
 }
