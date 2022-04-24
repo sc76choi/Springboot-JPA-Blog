@@ -7,11 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sc.blog.dto.ReplySaveRequestDto;
 import com.sc.blog.model.Board;
 import com.sc.blog.model.Reply;
 import com.sc.blog.model.User;
 import com.sc.blog.repository.BoardRepository;
 import com.sc.blog.repository.ReplyRepository;
+import com.sc.blog.repository.UserRepository;
 
 // 스프링이 bean에 등록 IOC 메모리에 뛰워 준다.
 @Service
@@ -22,6 +24,9 @@ public class BoardService {
     
     @Autowired
     private ReplyRepository replyRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
     
     @Transactional
     public void save(Board board, User user) { // title, content
@@ -59,17 +64,30 @@ public class BoardService {
         // 해당함수 종료시에, 트랜젝션이 Service가 종료될때, 트랜젝션이 종료됨. 이때 더티 체킹 발생 자동 업데이트 db flush
     }
     
+    // 댓글 쓰기
     @Transactional
-    public void replySave(User user, int boardId, Reply requestReply) {
+    // public void replySave(User user, int boardId, Reply requestReply) {
+    public void replySave(ReplySaveRequestDto replySaveRequestDto) {
         
-        Board board =  boardRepository.findById(boardId)
+        User user =  userRepository.findById(replySaveRequestDto.getUserId())
             .orElseThrow(()->{
-                return new IllegalArgumentException("댓글 쓰기 실패! boardId : " + boardId);
-            });
+                return new IllegalArgumentException("댓글 쓰기 실패! userId : " + replySaveRequestDto.getUserId());
+            }); // 영속화 완료
         
-        requestReply.setUser(user);
-        requestReply.setBoard(board);
+        Board board =  boardRepository.findById(replySaveRequestDto.getBoardId())
+            .orElseThrow(()->{
+                return new IllegalArgumentException("댓글 쓰기 실패! boardId : " + replySaveRequestDto.getBoardId());
+            }); // 영속화 완료
         
-        replyRepository.save(requestReply);
+        Reply reply = Reply.builder()
+                .user(user)
+                .board(board)
+                .content(replySaveRequestDto.getContent())
+                .build();
+                
+        // requestReply.setUser(user);
+        // requestReply.setBoard(board);
+        
+        replyRepository.save(reply);
     }
 }

@@ -87,13 +87,14 @@ let index = {
     },
     replySave: function() {
         let data = {
+            userId: $("#userId").val(),
             boardId: $("#boardId").val(),
             content: $("#reply-content").val()
         }
         
         //let boardId = $("#boardId").val();
         // alert("call save")
-        console.log("replySave : ", data)
+        console.log("replySave data : ", data)
         $.ajax({
             type: "POST",
             url: `/api/board/${data.boardId}/reply`, 
