@@ -8,7 +8,8 @@ let index = {
             this.save()
         });
         $("#btn-delete").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
-            this.deleteById()
+            let t = confirm("삭제 하시겠습니까?")
+            if(t) this.deleteById()
         });
         $("#btn-update").on("click", ()=> { // ()=>{} this를 바인딩 하기 위해서
             this.updateById()
@@ -109,6 +110,21 @@ let index = {
         }).fail(function(error) {
             // 실패
             alert("fail : \n" + JSON.stringify(error))
+        });
+    },
+    replyDelete: function(boardId, replyId) {
+        console.log("replyDelete boradId : ", boardId)
+        console.log("replyDelete replyId : ", replyId)
+        alert(`/api/board/${boardId}/reply/${replyId}`);
+        $.ajax({ 
+            type: "DELETE",
+            url: `/api/board/${boardId}/reply/${replyId}`,
+            dataType: "json"
+        }).done(function(resp){
+            alert("댓글삭제 성공");
+            location.href = `/board/${boardId}`;
+        }).fail(function(error){
+            alert(JSON.stringify(error));
         });
     },
 }

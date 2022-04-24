@@ -54,4 +54,11 @@ public class BoardApiController {
         boardService.replySave(replySaveRequestDto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+    
+    @DeleteMapping("/api/board/{boardId}/reply/{replyId}")
+    public ResponseDto<Integer> replySave(@PathVariable int replyId) {
+        System.out.println("called BoardApiController! - replyDelete");
+        boardService.replyDelete(replyId);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 }

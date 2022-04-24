@@ -90,4 +90,11 @@ public class BoardService {
         
         replyRepository.save(reply);
     }
+    
+    @Transactional
+    // public void replySave(User user, int boardId, Reply requestReply) {
+    public void replyDelete(int replyId) {
+        replyRepository.deleteById(replyId);
+    }
+    
 }
